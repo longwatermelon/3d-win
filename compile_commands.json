@@ -12,11 +12,11 @@
       "-Ideps/stb_image",
       "-c",
       "-o",
-      "obj/src/prog.o",
-      "src/prog.c"
+      "obj/src/texture.o",
+      "src/texture.c"
     ],
     "directory": "/home/long/workspace/3d-win",
-    "file": "/home/long/workspace/3d-win/src/prog.c",
-    "output": "/home/long/workspace/3d-win/obj/src/prog.o"
+    "file": "/home/long/workspace/3d-win/src/texture.c",
+    "output": "/home/long/workspace/3d-win/obj/src/texture.o"
   }
 ]

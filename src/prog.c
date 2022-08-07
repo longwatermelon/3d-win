@@ -1,5 +1,6 @@
 #include "prog.h"
 #include "util.h"
+#include "texture.h"
 #include <stdlib.h>
 
 
@@ -43,13 +44,16 @@ void prog_mainloop(struct Prog *p)
     float oor = 1.f / ratio; // h / w
 
     float verts[] = {
-        20.f, 0.f, 0.f, // top left
-        20.f, oor * -10.f, 0.f, // bottom left
-        20.f, oor * -10.f, ratio * 10.f, // bottom right
+        /* 20.f, 0.f, 0.f, 0.f, 0.f, */
+        /* 20.f, -10.f, 0.f, 0.f, 1.f, */
+        /* 20.f, -10.f, 10.f, 1.f, 1.f */
+        20.f, 0.f, 0.f,                  0.f, 0.f, // top left
+        20.f, oor * -10.f, 0.f,          0.f, 1.f,// bottom left
+        20.f, oor * -10.f, ratio * 10.f, 1.f, 1.f, // bottom right
 
-        20.f, oor * -10.f, ratio * 10.f, // bottom right
-        20.f, 0.f, ratio * 10.f, // top right
-        20.f, 0.f, 0.f // top left
+        20.f, 0.f, ratio * 10.f,         1.f, 0.f, // top right
+        20.f, 0.f, 0.f,                  0.f, 0.f, // top left
+        20.f, oor * -10.f, ratio * 10.f, 1.f, 1.f // bottom right
     };
 
     unsigned int vao, vb;
@@ -60,11 +64,17 @@ void prog_mainloop(struct Prog *p)
     glBindBuffer(GL_ARRAY_BUFFER, vb);
     glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
     glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(sizeof(float) * 3));
+    glEnableVertexAttribArray(1);
 
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    struct Texture *tex = tex_alloc("test.png");
 
     while (p->running)
     {
@@ -95,6 +105,8 @@ void prog_mainloop(struct Prog *p)
         glm_mat4_identity(model);
         shader_mat4(p->ri->shader, "model", model);
 
+        tex_bind(tex, 0);
+
         glBindVertexArray(vao);
         glDrawArrays(GL_TRIANGLES, 0, 6);
         glBindVertexArray(0);
@@ -102,6 +114,8 @@ void prog_mainloop(struct Prog *p)
         glfwSwapBuffers(p->win);
         glfwPollEvents();
     }
+
+    tex_free(tex);
 }
 
 
