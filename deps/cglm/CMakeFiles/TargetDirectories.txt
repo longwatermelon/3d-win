@@ -1,0 +1,9 @@
+/home/long/workspace/3d-win/deps/cglm/CMakeFiles/cglm.dir
+/home/long/workspace/3d-win/deps/cglm/CMakeFiles/package.dir
+/home/long/workspace/3d-win/deps/cglm/CMakeFiles/package_source.dir
+/home/long/workspace/3d-win/deps/cglm/CMakeFiles/edit_cache.dir
+/home/long/workspace/3d-win/deps/cglm/CMakeFiles/rebuild_cache.dir
+/home/long/workspace/3d-win/deps/cglm/CMakeFiles/list_install_components.dir
+/home/long/workspace/3d-win/deps/cglm/CMakeFiles/install.dir
+/home/long/workspace/3d-win/deps/cglm/CMakeFiles/install/local.dir
+/home/long/workspace/3d-win/deps/cglm/CMakeFiles/install/strip.dir
