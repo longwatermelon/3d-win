@@ -11,6 +11,7 @@ int main()
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     GLFWwindow *win = glfwCreateWindow(SCRW, SCRH, "Opengl", 0, 0);
+    glfwSetWindowPos(win, 1000, 0);
     glfwMakeContextCurrent(win);
 
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
